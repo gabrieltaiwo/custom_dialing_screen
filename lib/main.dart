@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
           children: [
             _buildButtonColumn(Colors.white, Icons.volume_mute, 'MUTE'),
             _buildButtonColumn(Colors.white, Icons.dialpad, 'KEYPAD'),
-            _buildButtonColumn(Colors.white, Icons.speaker, 'SPEAKER'),
+            _buildButtonColumn(Colors.white, Icons.speaker_phone, 'SPEAKER'),
           ],
         ),
         SizedBox(height: 20.0),
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildButtonColumn(Colors.white, Icons.dialpad, 'KEYPAD'),
+            _buildButtonColumn(Colors.white, Icons.fiber_manual_record, 'RECORD'),
             Column(
              children: <Widget>[
                Container(
@@ -42,7 +42,13 @@ class MyApp extends StatelessWidget {
                  child: Icon(Icons.call_end, color: Colors.white
                  ),
                ),
-               Text('END CALL')
+               SizedBox(height: 10.0),
+               Text('END CALL',
+                  style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white)
+               )
              ],
             ),
             _buildButtonColumn(Colors.white, Icons.contacts, 'CONTACT'),
