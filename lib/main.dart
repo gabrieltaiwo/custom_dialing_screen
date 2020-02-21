@@ -1,65 +1,30 @@
+import 'package:custom_dialing_screen/bttns.dart';
 import 'package:flutter/material.dart';
+//import 'package:custom_dialing_screen/bttns.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget buttonSection = Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildButtonColumn(Colors.white, Icons.volume_mute, 'MUTE'),
-            _buildButtonColumn(Colors.white, Icons.dialpad, 'KEYPAD'),
-            _buildButtonColumn(Colors.white, Icons.speaker_phone, 'SPEAKER'),
-          ],
-        ),
-        SizedBox(height: 20.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildButtonColumn(Colors.white, Icons.add, 'ADD CALL'),
-            _buildButtonColumn(Colors.white, Icons.headset, 'HEADSET'),
-            _buildButtonColumn(Colors.white, Icons.phone_bluetooth_speaker, 'BLUETOOTH'),
-          ],
-        ),
-        SizedBox(height: 20.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildButtonColumn(Colors.white, Icons.fiber_manual_record, 'RECORD'),
-            Column(
-             children: <Widget>[
-               Container(
-                 padding: EdgeInsets.all(10),
-                 decoration: BoxDecoration(
-                   color: Colors.red,
-                   borderRadius: BorderRadius.circular(25.0),
-                   // shape: BoxShape.circle,
-                   border: Border.all(color: Colors.grey),
-                 ),
-                 child: Icon(Icons.call_end, color: Colors.white
-                 ),
-               ),
-               SizedBox(height: 10.0),
-               Text('END CALL',
-                  style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white)
-               )
-             ],
-            ),
-            _buildButtonColumn(Colors.white, Icons.contacts, 'CONTACT'),
-          ],
-        ),
-      ],
-    );
-
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: SafeArea(
+       home: MyHomePage(),
+      debugShowCheckedModeBanner: false
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: SafeArea(
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -68,7 +33,6 @@ class MyApp extends StatelessWidget {
                   )
               ),
               child: Scaffold(
-
                   backgroundColor: Colors.transparent,
                   body: ListView(
                     children: <Widget>[
@@ -102,40 +66,71 @@ class MyApp extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 50.0),
-                      buttonSection,
-                    ],
-                  )),
-            )));
+                      //buttonSection,                     
+                      SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          BuildButton(
+                            color: Colors.white,
+                            grcolor: Colors.grey,
+                              label: 'SPEAKER',
+                              activeIcon: Icons.volume_up,
+                             inactiveIcon: Icons.volume_up,
+                                onPressed: (){},
+                          ),
+                          BuildButton(
+                           color: Colors.grey,
+                            grcolor: Colors.white,
+                              label: 'KEYPAD',
+                              activeIcon: Icons.dialpad,
+                              inactiveIcon: Icons.dialpad,
+                                onPressed: (){
+
+                                },
+                          ),
+                          BuildButton(
+                            color: Colors.white,
+                            grcolor: Colors.grey,
+                              label: 'HEADSET',
+                              activeIcon: Icons.phone_bluetooth_speaker,
+                              inactiveIcon: Icons.phone_bluetooth_speaker,
+                                onPressed: (){},
+                          ),
+                        ],
+                      ),
+                       SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          BuildButton(
+                            color: Colors.white,
+                            grcolor: Colors.grey ,
+                              label: 'ADD CALL',
+                              activeIcon: Icons.add_call,
+                              inactiveIcon: Icons.add_call,
+                                onPressed: (){},
+                          ),
+                          BuildButton(
+                            color: Colors.grey,
+                            grcolor: Colors.white,
+                            btncolor: Colors.red,
+                              label: 'END CALL',
+                              activeIcon: Icons.call_end,
+                              inactiveIcon: Icons.call_end,
+                                onPressed: (){},
+                          ),
+                          BuildButton(
+                            color: Colors.white,
+                            grcolor: Colors.grey,
+                              label: 'MUTE',
+                              activeIcon: Icons.mic_off,
+                              inactiveIcon: Icons.mic_off,
+                                onPressed: (){},
+                          ),
+                        ],
+                      ),
+                  ]),
+    ))));
   }
-}
-
-Column _buildButtonColumn(Color color, IconData icon, String label) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    mainAxisAlignment: MainAxisAlignment.center,
-
-    children: [
-      Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25.0),
-         // shape: BoxShape.circle,
-          border: Border.all(color: Colors.white),
-        ),
-        child: Icon(icon, color: Colors.white
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 8),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: color,
-          ),
-        ),
-      ),
-    ],
-  );
 }
